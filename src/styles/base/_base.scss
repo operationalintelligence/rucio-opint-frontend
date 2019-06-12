@@ -1,0 +1,17 @@
+.app-container {
+    min-height: 100vh;
+}
+
+.app-content {
+    padding: 25px 50px;
+}
+
+.navigation-menu {
+    line-height: 64px;
+    background-color: $dark-blue;
+}
+
+.app-footer {
+    color: rgba(255, 255, 255, 0.65);
+    background: $dark-blue;
+}
