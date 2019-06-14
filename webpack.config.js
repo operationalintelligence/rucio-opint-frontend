@@ -1,10 +1,12 @@
 const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
       path: path.join(__dirname, 'public'),
-      filename: 'main.js'
+      filename: 'main.js',
+      publicPath: '/'
   },
   module: {
     rules: [
@@ -22,6 +24,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public')
+    contentBase: path.join(__dirname, 'public'),
+    historyApiFallback: true,
   }
 };
