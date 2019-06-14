@@ -1,15 +1,22 @@
 import React from "react";
-import { Card, Row, Col, Tag, Icon } from "antd";
+import { Card, Row, Tag, Icon } from "antd";
 
 class ErrorListItem extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
     }
+
+    handleCardClick = (e) => {
+        this.props.handleSelection(this.props.id);
+    }
+
     render(){
         return(
+            <a>
             <Card
                 className='error-card'
+                onClick= {this.handleCardClick}
             >  
                 <Row className='error-card-message'>
                     <Tag color="red">{this.props.amount}</Tag>
@@ -17,16 +24,12 @@ class ErrorListItem extends React.Component {
                 </Row>
 
                 <Row className='error-card-info'>
-                    <Col span={16}>
                         <Tag>{this.props.src_site}</Tag>
-                        <Icon style={{ "margin-right": "8px" }} type="arrow-right" />
+                        <Icon style={{ marginRight: "8px" }} type="arrow-right" />
                         <Tag>{this.props.dst_site}</Tag>
-                    </Col>
-                    <Col span={8}>
-                    
-                    </Col>
                 </Row>
             </Card>
+            </a>
         )
     }
 }

@@ -31,12 +31,16 @@ class ErrorList extends React.Component {
             ...props}
     }
 
+    handleSelection = (id) => {
+        this.props.history.push('/errors/'+id);
+    };
+
     render(){
         return (
             <div className='error-list'>
                 <h1 className='error-list-title'>List of recent errors</h1>
                     {this.state.errors.map((error) => (
-                        <ErrorListItem key={error.message} {...error}/>
+                        <ErrorListItem key={error.message} handleSelection={this.handleSelection} {...error}/>
                     ))}
             </div>
         );
