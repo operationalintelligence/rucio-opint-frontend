@@ -3,12 +3,12 @@ import React from "react";
 class ErrorDetail extends React.Component {
     constructor(props) {
         super(props);
-        this.props = props;
-        console.log(this.props);
+        this.state={...props}
     }
+    
     render(){
         return(
-            <p>Details of error: {this.props.match.params.error}</p>
+            <p>Details of error: </p>
         )
     }
 }
