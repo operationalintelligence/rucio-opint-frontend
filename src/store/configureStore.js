@@ -1,12 +1,14 @@
-import {createStore, combineReducers} from 'redux';
-import errorsReducer from '../reducers/errors'
+import {applyMiddleware, createStore, combineReducers} from 'redux';
+import thunk from 'redux-thunk';
+import { errorsReducer } from '../reducers/errors'
 
 export default () => {
     const store = createStore(
         combineReducers({
-            errors: errorsReducer,
+            errors: errorsReducer
         }),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        applyMiddleware(thunk)
     );
     return store;
 }
+
