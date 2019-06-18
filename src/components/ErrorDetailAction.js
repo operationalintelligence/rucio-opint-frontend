@@ -66,8 +66,8 @@ class ErrorDetailAction extends React.Component {
                             </Button>
                         </Row>
                         <Row>
-                            <Button style={{marginTop: '15px'}} type="primary" shape="round" icon="download">
-                                Open Ticket on destination site.
+                            <Button style={{marginTop: '15px'}} type="primary" shape="round" icon="container">
+                                View destination site ticket.
                             </Button>
                         </Row>
                     </Row>
