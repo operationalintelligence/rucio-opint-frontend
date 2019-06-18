@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getErrorById } from '../actions/fetchErrors';
+import ErrorDetailAction from './ErrorDetailAction'
 
 class ErrorDetail extends React.Component {
     constructor(props) {
@@ -24,10 +25,19 @@ class ErrorDetail extends React.Component {
         
     render(){
         if(!this.shouldComponentRender()) return (<div></div>)
-        return(
+        const ret = (  
             <div>
-            {console.log(this.props.error)}
+                Possible Reason<br/>
+                Proposed actions<br/>
+                Source =>
+                Destination<br/>
+                Took Actions Button<br/>
+                <br/>
+                Share/Ticket buttons (?)<br/>
             </div>
+    );
+        return(
+            <ErrorDetailAction error={this.props.error}></ErrorDetailAction>
         )
     }
 }
