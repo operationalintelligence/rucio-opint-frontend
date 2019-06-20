@@ -7,7 +7,7 @@ import ErrorDetailAction from './ErrorDetailAction'
 class ErrorDetail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {error: undefined}
+        this.state = {error: undefined, clicked:false}
         this.shouldComponentRender = this.shouldComponentRender.bind(this);
     }
 
@@ -22,7 +22,9 @@ class ErrorDetail extends React.Component {
         if(pending === false) return false;
         return true;
     }
-        
+
+    handleClick = () => {this.setState(() => ({ clicked:true }))}
+s
     render(){
         if(!this.shouldComponentRender()) return (<div></div>)
         const ret = (  
@@ -37,7 +39,7 @@ class ErrorDetail extends React.Component {
             </div>
     );
         return(
-            <ErrorDetailAction error={this.props.error}></ErrorDetailAction>
+            this.state.clicked ? <p>other</p> : <ErrorDetailAction error={this.props.error} handleClick={this.handleClick}></ErrorDetailAction>
         )
     }
 }

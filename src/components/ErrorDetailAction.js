@@ -7,8 +7,8 @@ class ErrorDetailAction extends React.Component {
         this.props = props;
     }
 
-    handleSubmition = (e) => {
-        // this.props.handleSelection(this.props.id);
+    handleClick = (e) => {
+        this.props.handleClick();
     }
 
     // handleSiteClick = (site) => {
@@ -28,7 +28,7 @@ class ErrorDetailAction extends React.Component {
         //         )
         // }
         // else{
-            console.log(this.props.error)
+            // console.log(this.props.error)
             return <Tag>{site}</Tag>
         // }
     }
@@ -72,8 +72,8 @@ class ErrorDetailAction extends React.Component {
                         </Row>
                     </Row>
                     </Col>
-                    <Col span={12}>
-                        <Button className='detail-action-submit-button' size='large'>Take action</Button>
+                    <Col span={12} type="flex" justify="bottom">
+                        <Button onClick= {this.handleClick} className='detail-action-submit-button' size='large'>Take action</Button>
                     </Col>
                 </Row>
             </Card>
