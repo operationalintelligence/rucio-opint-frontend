@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getErrorById } from '../actions/fetchErrors';
 import ErrorDetailAction from './ErrorDetailAction'
+import ErrorDetailFeedback from './ErrorDetailFeedback'
 
 class ErrorDetail extends React.Component {
     constructor(props) {
@@ -39,7 +40,10 @@ s
             </div>
     );
         return(
-            this.state.clicked ? <p>other</p> : <ErrorDetailAction error={this.props.error} handleClick={this.handleClick}></ErrorDetailAction>
+            this.state.clicked ? 
+                <ErrorDetailFeedback error={this.props.error} />
+                : 
+                <ErrorDetailAction error={this.props.error} handleClick={this.handleClick}/>
         )
     }
 }
