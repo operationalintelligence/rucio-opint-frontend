@@ -1,4 +1,4 @@
-import {fetchIssuePending, fetchIssuesSuccess, fetchIssueError, fetchIssueByID} from './issues';
+import {fetchIssuePending, fetchIssuesSuccess, fetchIssueError, fetchIssueByID} from '../actions/issues';
 
 export function fetchIssues() {
     return dispatch => {

@@ -1,6 +1,6 @@
 import {applyMiddleware, createStore, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
-import { issuessReducer } from '../reducers/issues'
+import { issuesReducer } from '../reducers/issues'
 
 export default () => {
     const store = createStore(

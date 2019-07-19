@@ -1,4 +1,3 @@
-
 export function fetchIssuesPending() {
     return {    
         type: 'FETCH_ISSUES_PENDING'

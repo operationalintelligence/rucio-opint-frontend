@@ -2,7 +2,7 @@ import React from "react";
 import IssueListItem from './IssueListItem'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchIssues } from '../actions/fetchIssues';
+import { fetchIssues } from '../creators/issues';
 
 class IssueList extends React.Component {
     constructor(props) {

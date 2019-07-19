@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getIssueById } from '../actions/fetchIssues';
+import { getIssueById } from '../creators/issues';
 import IssueDetailAction from './IssueDetailAction'
 import IssueDetailFeedback from './IssueDetailFeedback'
 
