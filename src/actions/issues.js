@@ -13,7 +13,7 @@ export function fetchIssuesSuccess(issues) {
 
 export function fetchIssuesError(issue) {
     return {
-        type: 'FETCH_ISSUES_ISSUE',
+        type: 'FETCH_ISSUES_ERROR',
         issue: issue
     }
 }

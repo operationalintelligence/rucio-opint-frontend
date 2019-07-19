@@ -2,6 +2,9 @@ import React from "react";
 import { Card, Form, Select, Row, Tag, Button, Input } from "antd";
 import { withRouter } from 'react-router-dom'
 
+import { connect } from "react-redux";
+import { fetchActions } from "../creators/actions";
+
 const { TextArea } = Input;
 
 class IssueDetailFeedback extends React.Component {
@@ -9,6 +12,10 @@ class IssueDetailFeedback extends React.Component {
         super(props);
         this.props = props;
         this.state = {actionWorked: true, actionNA: false};
+    }
+
+    componentDidMount(){
+        this.props.dispatch(fetchActions());
     }
 
     handleSubmit = (e) => {
@@ -25,14 +32,20 @@ class IssueDetailFeedback extends React.Component {
     }
 
     handleActionChange = (e) => {
+        console.log(e);
         e === 'None' ?
         this.setState(() => ({ actionNA:true}))
         :
-        this.setState(() => ({ actionNA:true}))
+        this.setState(() => ({ actionNA:false}))
     }
 
     render(){
         if (!this.props.issue) return <div></div>
+        actionOptions = []
+        var actionOptions = this.props.actions.map(function (action) {
+            return <Select.Option key={action.text} value={action.id}>{action.text}</Select.Option>
+          });
+
         return(
             <Card className='detail-feedback-card'> 
 
@@ -55,9 +68,7 @@ class IssueDetailFeedback extends React.Component {
                 <Form.Item label="What action did Work ?" colon={false}>
                     <Select defaultValue="" onChange={this.handleActionChange}>
                         <Select.Option value=""></Select.Option>
-                        <Select.Option value="Action1">Action1</Select.Option>
-                        <Select.Option value="Action2">Action2</Select.Option>
-                        <Select.Option value="Action3">Action3</Select.Option>
+                        {actionOptions}
                         <Select.Option value="None">None of the above</Select.Option>
                     </Select>            
                 </Form.Item>
@@ -86,5 +97,13 @@ class IssueDetailFeedback extends React.Component {
 }
 
 const WrappedFeedbackForm = Form.create({ name: 'feedback' })(IssueDetailFeedback);
-export default withRouter(WrappedFeedbackForm);
-// export default WrappedFeedbackForm;
+
+const mapStateToProps = (state) => {
+    return (
+    {issue: state.issues.issue,
+    actions: state.actions.actions,
+    loading: state.actions.loading,
+    error: state.actions.error
+        })};
+
+export default connect(mapStateToProps)(withRouter(WrappedFeedbackForm));
