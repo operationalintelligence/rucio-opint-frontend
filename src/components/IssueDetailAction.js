@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Tag, Icon, Row, Col, Button } from "antd";
 
-class ErrorDetailAction extends React.Component {
+class IssueDetailAction extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
@@ -28,26 +28,26 @@ class ErrorDetailAction extends React.Component {
         //         )
         // }
         // else{
-            // console.log(this.props.error)
+            // console.log(this.props.issue)
             return <Tag>{site}</Tag>
         // }
     }
 
     render(){
-        if (!this.props.error) return <div></div>
+        if (!this.props.issue) return <div></div>
         return(
             <Card className='detail-action-card'> 
                 <Row className='detail-action-card-message'>
-                    <Tag color="red">{this.props.error.amount}</Tag>
-                    {this.props.error.message}
+                    <Tag color="red">{this.props.issue.amount}</Tag>
+                    {this.props.issue.message}
                 </Row>
                 <Row type="flex">
                     <Col span={12}>
                     <Row className='detail-action-card-info'>
                         <Row>
-                            {this.renderSite(this.props.error['src_site'])}
+                            {this.renderSite(this.props.issue['src_site'])}
                             <Icon style={{ marginRight: "8px" }} type="arrow-right" />
-                            {this.renderSite(this.props.error['dst_site'])}
+                            {this.renderSite(this.props.issue['dst_site'])}
                         </Row>
                         <Row style={{marginTop: '15px'}}>
                             <h3>Possible issue:</h3>
@@ -82,4 +82,4 @@ class ErrorDetailAction extends React.Component {
 }
 
 
-export default ErrorDetailAction;
+export default IssueDetailAction;

@@ -1,32 +1,32 @@
 const initialState = {
     pending: true,
-    errors: [],
+    issues: [],
     error: null
 }
 
-export function errorsReducer(state = initialState, action) {
+export function issuesReducer(state = initialState, action) {
     switch(action.type) {
-        case 'FETCH_ERRORS_PENDING': 
+        case 'FETCH_ISSUES_PENDING': 
             return {
                 ...state,
                 pending: true
             }
-        case 'FETCH_ERRORS_SUCCESS':
+        case 'FETCH_ISSUES_SUCCESS':
             return {
                 ...state,
                 pending: false,
-                errors: action.errors
+                issues: action.issues
             }
-        case 'FETCH_ERRORS_ERROR':
+        case 'FETCH_ISSUES_ERROR':
             return {
                 ...state,
                 pending: false,
                 error: action.error
             }
-        case 'FETCH_ERRORS_ID':
+        case 'FETCH_ISSUES_ID':
             return {
                 ...state,
-                cerror: state.errors[action.id-1]
+                issue: state.issues[action.id-1]
             }
         default: 
             return state;

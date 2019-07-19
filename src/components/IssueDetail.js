@@ -1,21 +1,21 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getErrorById } from '../actions/fetchErrors';
-import ErrorDetailAction from './ErrorDetailAction'
-import ErrorDetailFeedback from './ErrorDetailFeedback'
+import { getIssueById } from '../actions/fetchIssues';
+import IssueDetailAction from './IssueDetailAction'
+import IssueDetailFeedback from './IssueDetailFeedback'
 
-class ErrorDetail extends React.Component {
+class IssueDetail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {error: undefined, clicked:false}
+        this.state = {issue: undefined, clicked:false}
         this.shouldComponentRender = this.shouldComponentRender.bind(this);
     }
 
     componentDidMount() {
-        const {getErrorById} = this.props;
-        const id = this.props.match.params.error;
-        getErrorById(id);
+        const {getIssueById} = this.props;
+        const id = this.props.match.params.issue;
+        getIssueById(id);
     }
 
     shouldComponentRender() {
@@ -41,20 +41,20 @@ s
     );
         return(
             this.state.clicked ? 
-                <ErrorDetailFeedback error={this.props.error} />
+                <IssueDetailFeedback issue={this.props.issue} />
                 : 
-                <ErrorDetailAction error={this.props.error} handleClick={this.handleClick}/>
+                <IssueDetailAction issue={this.props.issue} handleClick={this.handleClick}/>
         )
     }
 }
 
 const mapStateToProps = (state) => (
-    {error: state.errors.cerror,
-     pending: state.errors.pending
+    {issue: state.issues.issue,
+     pending: state.issues.pending
     });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    getErrorById: getErrorById
+    getIssueById: getIssueById
 }, dispatch)
   
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(IssueDetail);

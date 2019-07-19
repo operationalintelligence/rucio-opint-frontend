@@ -1,6 +1,6 @@
-import {fetchErrorsPending, fetchErrorsSuccess, fetchErrorsError, fetchErrorByID} from './errors';
+import {fetchIssuePending, fetchIssuesSuccess, fetchIssueError, fetchIssueByID} from './issues';
 
-export function fetchErrors() {
+export function fetchIssues() {
     return dispatch => {
         const dat = [
             {
@@ -24,12 +24,12 @@ export function fetchErrors() {
               "created_at": "2019-06-05 14:11:49.337664"
             }
           ]; 
-        dispatch(fetchErrorsSuccess(dat));
+        dispatch(fetchIssuesSuccess(dat));
         return dat;
     }
 }
 
-export function getErrorById(id) {
+export function getIssueById(id) {
     return dispatch => {
         const dat = [
             {
@@ -53,8 +53,8 @@ export function getErrorById(id) {
               "created_at": "2019-06-05 14:11:49.337664"
             }
           ]; 
-        dispatch(fetchErrorsSuccess(dat));
-        dispatch(fetchErrorByID(id));
+        dispatch(fetchIssuesSuccess(dat));
+        dispatch(fetchIssueByID(id));
         return id;
     }
 }

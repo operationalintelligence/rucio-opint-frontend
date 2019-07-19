@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 const { TextArea } = Input;
 
-class ErrorDetailFeedback extends React.Component {
+class IssueDetailFeedback extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
@@ -14,7 +14,7 @@ class ErrorDetailFeedback extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submit', e);
-        this.props.history.push('/errors/');
+        this.props.history.push('/issues/');
     }
 
     handleActionWorkedChange = (e) => {
@@ -32,13 +32,13 @@ class ErrorDetailFeedback extends React.Component {
     }
 
     render(){
-        if (!this.props.error) return <div></div>
+        if (!this.props.issue) return <div></div>
         return(
             <Card className='detail-feedback-card'> 
 
                 <Row className='detail-action-card-message'>
-                    <Tag color="red">{this.props.error.amount}</Tag>
-                    {this.props.error.message}
+                    <Tag color="red">{this.props.issue.amount}</Tag>
+                    {this.props.issue.message}
                 </Row>
 
                 <Form 
@@ -70,8 +70,8 @@ class ErrorDetailFeedback extends React.Component {
                 <Form.Item label="Which site was affected ?" colon={false}>
                 <Select defaultValue="Unknown">
                     <Select.Option value="Unknown">Unknown</Select.Option>
-                    {this.props.error.src_site !== 'UNKNOWN' && <Select.Option value={this.props.error.src_site}>{this.props.error.src_site}</Select.Option>}
-                    {this.props.error.dst_site !== 'UNKNOWN' &&  <Select.Option value={this.props.error.dst_site}>{this.props.error.dst_site}</Select.Option> }
+                    {this.props.issue.src_site !== 'UNKNOWN' && <Select.Option value={this.props.issue.src_site}>{this.props.issue.src_site}</Select.Option>}
+                    {this.props.issue.dst_site !== 'UNKNOWN' &&  <Select.Option value={this.props.issue.dst_site}>{this.props.issue.dst_site}</Select.Option> }
                 </Select>            
             </Form.Item>
             <Form.Item s>
@@ -85,6 +85,6 @@ class ErrorDetailFeedback extends React.Component {
     }
 }
 
-const WrappedFeedbackForm = Form.create({ name: 'feedback' })(ErrorDetailFeedback);
+const WrappedFeedbackForm = Form.create({ name: 'feedback' })(IssueDetailFeedback);
 export default withRouter(WrappedFeedbackForm);
 // export default WrappedFeedbackForm;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Row, Tag, Icon } from "antd";
 
-class ErrorListItem extends React.Component {
+class IssueListItem extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
@@ -15,15 +15,15 @@ class ErrorListItem extends React.Component {
         return(
             <a>
             <Card
-                className='error-card'
+                className='issue-card'
                 onClick= {this.handleCardClick}
             >  
-                <Row className='error-card-message'>
+                <Row className='issue-card-message'>
                     <Tag color="red">{this.props.amount}</Tag>
                     {this.props.message}
                 </Row>
 
-                <Row className='error-card-info'>
+                <Row className='issue-card-info'>
                         <Tag>{this.props.src_site}</Tag>
                         <Icon style={{ marginRight: "8px" }} type="arrow-right" />
                         <Tag>{this.props.dst_site}</Tag>
@@ -35,4 +35,4 @@ class ErrorListItem extends React.Component {
 }
 
 
-export default ErrorListItem;
+export default IssueListItem;

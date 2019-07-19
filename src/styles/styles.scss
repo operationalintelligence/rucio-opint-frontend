@@ -1,7 +1,7 @@
 @import './base/settings';
 @import './base/base';
-@import './components/errorlist';
-@import './components/error-detail';
+@import './components/issuelist';
+@import './components/issue-detail';
 
 :export {
     midnightBlue: $midnight-blue;

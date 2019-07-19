@@ -12,8 +12,8 @@ const Header = (props) => (
         <Menu.Item key="/">
             <NavLink exact activeClassName="is-active" to='/'>Home</NavLink>
         </Menu.Item>    
-        <Menu.Item key="/errors">
-            <NavLink exact activeClassName="is-active" to='/errors'>Errors</NavLink>
+        <Menu.Item key="/issues">
+            <NavLink exact activeClassName="is-active" to='/issues'>Issues</NavLink>
         </Menu.Item>    
       </Menu>
 )
