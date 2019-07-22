@@ -1,3 +1,5 @@
+import { FETCH_ISSUES_BEGIN, FETCH_ISSUES_SUCCESS, FETCH_ISSUES_FAILURE, FETCH_ISSUES_ID } from '../actions/issues';
+
 const initialState = {
     pending: true,
     issues: [],
@@ -6,24 +8,25 @@ const initialState = {
 
 export function issuesReducer(state = initialState, action) {
     switch(action.type) {
-        case 'FETCH_ISSUES_PENDING': 
+        case FETCH_ISSUES_BEGIN: 
             return {
                 ...state,
-                pending: true
+                pending: true,
+                error: null
             }
-        case 'FETCH_ISSUES_SUCCESS':
+        case FETCH_ISSUES_SUCCESS:
             return {
                 ...state,
                 pending: false,
-                issues: action.issues
+                issues: action.payload.issues
             }
-        case 'FETCH_ISSUES_ERROR':
+        case FETCH_ISSUES_FAILURE:
             return {
                 ...state,
                 pending: false,
                 error: action.error
             }
-        case 'FETCH_ISSUES_ID':
+        case FETCH_ISSUES_ID:
             return {
                 ...state,
                 issue: state.issues[action.id-1]

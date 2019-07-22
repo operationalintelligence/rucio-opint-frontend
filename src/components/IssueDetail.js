@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getIssueById } from '../creators/issues';
+import { fetchIssueById } from '../creators/issues';
 import IssueDetailAction from './IssueDetailAction'
 import IssueDetailFeedback from './IssueDetailFeedback'
 
@@ -13,9 +12,8 @@ class IssueDetail extends React.Component {
     }
 
     componentDidMount() {
-        const {getIssueById} = this.props;
         const id = this.props.match.params.issue;
-        getIssueById(id);
+        this.props.dispatch(fetchIssueById(id));
     }
 
     shouldComponentRender() {
@@ -53,8 +51,4 @@ const mapStateToProps = (state) => (
      pending: state.issues.pending
     });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-    getIssueById: getIssueById
-}, dispatch)
-  
-export default connect(mapStateToProps, mapDispatchToProps)(IssueDetail);
+export default connect(mapStateToProps)(IssueDetail);

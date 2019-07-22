@@ -1,26 +1,25 @@
-export function fetchIssuesPending() {
-    return {    
-        type: 'FETCH_ISSUES_PENDING'
-    }
-}
+export const FETCH_ISSUES_BEGIN   = 'FETCH_ISSUES_BEGIN';
+export const FETCH_ISSUES_SUCCESS = 'FETCH_ISSUES_SUCCESS';
+export const FETCH_ISSUES_FAILURE = 'FETCH_ISSUES_FAILURE';
+export const FETCH_ISSUES_ID = 'FETCH_ISSUES_ID';
 
-export function fetchIssuesSuccess(issues) {
-    return {
-        type: 'FETCH_ISSUES_SUCCESS',
-        issues
-    }
-}
+export const fetchIssuesBegin = () => ({
+  type: FETCH_ISSUES_BEGIN
+});
 
-export function fetchIssuesError(issue) {
-    return {
-        type: 'FETCH_ISSUES_ERROR',
-        issue: issue
-    }
-}
+export const fetchIssuesSuccess = issues => ({
+  type: FETCH_ISSUES_SUCCESS,
+  payload: { issues }
+});
+
+export const fetchIssuesFailure = error => ({
+  type: FETCH_ISSUES_FAILURE,
+  payload: { error }
+});
 
 export function fetchIssueByID(id) {
     return {
-        type: 'FETCH_ISSUES_ID',
+        type: FETCH_ISSUES_ID,
         id: id
     }
 }

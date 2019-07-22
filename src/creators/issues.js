@@ -1,7 +1,8 @@
-import {fetchIssuePending, fetchIssuesSuccess, fetchIssueError, fetchIssueByID} from '../actions/issues';
+import {fetchIssuesBegin, fetchIssuesSuccess, fetchIssuesFailure, fetchIssueByID} from '../actions/issues';
 
 export function fetchIssues() {
     return dispatch => {
+        dispatch(fetchIssuesBegin());
         const dat = [
             {
               "id": "1",
@@ -29,8 +30,9 @@ export function fetchIssues() {
     }
 }
 
-export function getIssueById(id) {
+export function fetchIssueById(id) {
     return dispatch => {
+        dispatch(fetchIssuesBegin());
         const dat = [
             {
               "id": "1",

@@ -11,19 +11,19 @@ export function actionsReducer(state = initialState, action) {
         case FETCH_ACTIONS_BEGIN: 
             return {
                 ...state,
-                loading: true,
+                pending: true,
                 error: null
             }
         case FETCH_ACTIONS_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                pending: false,
                 actions: action.payload.actions
             }
         case FETCH_ACTIONS_FAILURE:
             return {
                 ...state,
-                loading: false,
+                pending: false,
                 error: action.payload.error,
                 actions: []
             }

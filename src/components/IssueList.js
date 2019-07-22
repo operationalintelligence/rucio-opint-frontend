@@ -1,7 +1,6 @@
 import React from "react";
 import IssueListItem from './IssueListItem'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { fetchIssues } from '../creators/issues';
 
 class IssueList extends React.Component {
@@ -14,8 +13,7 @@ class IssueList extends React.Component {
     }
 
     componentDidMount(){
-        const {fetchIssues} = this.props;
-        fetchIssues();
+        this.props.dispatch(fetchIssues());
       }
 
     render(){
@@ -36,8 +34,4 @@ const mapStateToProps = (state) => ({
     issues: state.issues
   });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchIssues: fetchIssues
-}, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(IssueList);
+export default connect(mapStateToProps)(IssueList);
