@@ -64,7 +64,7 @@ class IssueDetailFeedback extends React.Component {
                 </Form.Item>
                 { !this.state.actionWorked &&
                 <Form.Item label="What action did Work ?" colon={false}>
-                    <Select defaultValue="" onChange={this.handleActionChange}>
+                    <Select showSearch defaultValue="" onChange={this.handleActionChange} optionFilterProp="children">
                         <Select.Option value=""></Select.Option>
                         {actionOptions}
                         <Select.Option value="None">None of the above</Select.Option>
