@@ -20,7 +20,6 @@ class IssueDetailFeedback extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submit', e);
         this.props.history.push('/issues/');
     }
 
@@ -32,7 +31,6 @@ class IssueDetailFeedback extends React.Component {
     }
 
     handleActionChange = (e) => {
-        console.log(e);
         e === 'None' ?
         this.setState(() => ({ actionNA:true}))
         :
