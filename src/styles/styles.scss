@@ -2,6 +2,7 @@
 @import './base/base';
 @import './components/issuelist';
 @import './components/issue-detail';
+@import './components/search-bar';
 
 :export {
     midnightBlue: $midnight-blue;

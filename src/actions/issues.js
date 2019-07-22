@@ -2,6 +2,7 @@ export const FETCH_ISSUES_BEGIN   = 'FETCH_ISSUES_BEGIN';
 export const FETCH_ISSUES_SUCCESS = 'FETCH_ISSUES_SUCCESS';
 export const FETCH_ISSUES_FAILURE = 'FETCH_ISSUES_FAILURE';
 export const FETCH_ISSUES_ID = 'FETCH_ISSUES_ID';
+export const UPDATE_SEARCH_TEXT = 'UPDATE_SEARCH_TEXT';
 
 export const fetchIssuesBegin = () => ({
   type: FETCH_ISSUES_BEGIN
@@ -23,3 +24,8 @@ export function fetchIssueByID(id) {
         id: id
     }
 }
+
+export const updateSearchText = text =>({
+  type: UPDATE_SEARCH_TEXT,
+  searchText: text
+});

@@ -1,8 +1,9 @@
-import { FETCH_ISSUES_BEGIN, FETCH_ISSUES_SUCCESS, FETCH_ISSUES_FAILURE, FETCH_ISSUES_ID } from '../actions/issues';
+import { FETCH_ISSUES_BEGIN, FETCH_ISSUES_SUCCESS, FETCH_ISSUES_FAILURE, FETCH_ISSUES_ID, UPDATE_SEARCH_TEXT } from '../actions/issues';
 
 const initialState = {
     pending: true,
     issues: [],
+    searchText: '',
     error: null
 }
 
@@ -30,6 +31,11 @@ export function issuesReducer(state = initialState, action) {
             return {
                 ...state,
                 issue: state.issues[action.id-1]
+            }
+        case UPDATE_SEARCH_TEXT:
+            return {
+                ...state,
+                searchText: action.searchText
             }
         default: 
             return state;
