@@ -11,26 +11,15 @@ class IssueDetailAction extends React.Component {
         this.props.handleClick();
     }
 
-    // handleSiteClick = (site) => {
-    //     if (site && site !== 'UNKNOWN'){
-    //         const url = 'https://wlcg-cric.cern.ch/core/rcsite/detail/' + site + '/'
-    //         console.log(url);
-    //         // window.location.href = url
-    //     }
-    // }
+    handleSiteClick = (site) => {
+        if (site && site !== 'UNKNOWN'){
+            const url = 'https://wlcg-cric.cern.ch/core/rcsite/detail/' + site + '/'
+            window.open(url,'_blank');
+        }
+    }
 
     renderSite = (site) => {
-        // if ( site !== 'UNKNOWN'){
-        //     return (
-        //         <a onClick={this.handleSiteClick(site)}>
-        //             <Tag>{site}</Tag>
-        //         </a>
-        //         )
-        // }
-        // else{
-            // console.log(this.props.issue)
-            return <Tag>{site}</Tag>
-        // }
+            return <Tag className="clickable" onClick={() => { this.handleSiteClick(site) }}>{site}</Tag>
     }
 
     render(){
