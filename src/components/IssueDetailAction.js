@@ -1,12 +1,9 @@
 import React from "react";
 import { Card, Tag, Icon, Row, Col, Button } from "antd";
+import { connect } from "react-redux";
+import { fetchActions } from "../creators/actions";
 
 class IssueDetailAction extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-
     handleClick = (e) => {
         this.props.handleClick();
     }
@@ -70,5 +67,13 @@ class IssueDetailAction extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return ({
+        issue: state.issues.issue,
+        actions: state.actions.actions,
+        pending: state.actions.pending,
+        error: state.actions.error
+    })
+};
 
-export default IssueDetailAction;
+export default connect(mapStateToProps)(IssueDetailAction);
