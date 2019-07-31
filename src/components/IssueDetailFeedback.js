@@ -3,7 +3,8 @@ import { Card, Form, Select, Row, Tag, Button, Input } from "antd";
 import { withRouter } from 'react-router-dom'
 
 import { connect } from "react-redux";
-import { fetchActions } from "../creators/actions";
+import { fetchActions, postAction } from "../creators/actions";
+import { postSolution } from "../creators/issueSolution";
 
 const { TextArea } = Input;
 
@@ -22,10 +23,22 @@ class IssueDetailFeedback extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-              console.log('Received values of form: ', values);
+                console.log('Received values of form: ', values);
+                let action = values.action
+                if (values.action == 'None') {
+                    console.log('Should post new action ', values.newaction)
+                    action = postAction({text: values.newaction})
+                }
+                const solution = {
+                    proposed_action_id: action,
+                    issue_id: 1,
+                    category_id: this.props.issue.category_id,
+                    affected_site: values.site
+                }
+                postSolution(solution);
             }
           });
-        // this.props.history.push('/issues/');
+        this.props.history.push('/issues/');
     }
 
     handleActionWorkedChange = (e) => {
@@ -97,8 +110,8 @@ class IssueDetailFeedback extends React.Component {
                       })(
                         <Select>
                             <Select.Option value="Unknown">Unknown</Select.Option>
-                            {this.props.issue.src_site !== 'UNKNOWN' && <Select.Option value={this.props.issue.src_site}>{this.props.issue.src_site}</Select.Option>}
-                            {this.props.issue.dst_site !== 'UNKNOWN' &&  <Select.Option value={this.props.issue.dst_site}>{this.props.issue.dst_site}</Select.Option> }
+                            {this.props.issue.src_site !== 'UNKNOWN' && <Select.Option value='src_site'>{this.props.issue.src_site}</Select.Option>}
+                            {this.props.issue.dst_site !== 'UNKNOWN' &&  <Select.Option value='dst_site'>{this.props.issue.dst_site}</Select.Option> }
                         </Select>      
                       )}      
                     </Form.Item>

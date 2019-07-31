@@ -17,3 +17,13 @@ export function fetchActions() {
     })
 }
 }
+
+export function postAction(action) {
+    API.post('action', action)
+    .then(res => {
+        return res.data.id
+    })
+    .catch(error => {
+        console.log('Error posting action ', error)
+    })
+};
