@@ -20,7 +20,12 @@ class IssueDetailFeedback extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.history.push('/issues/');
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+              console.log('Received values of form: ', values);
+            }
+          });
+        // this.props.history.push('/issues/');
     }
 
     handleActionWorkedChange = (e) => {
@@ -43,7 +48,7 @@ class IssueDetailFeedback extends React.Component {
         var actionOptions = this.props.actions.map(function (action) {
             return <Select.Option key={action.text} value={action.id}>{action.text}</Select.Option>
           });
-
+        const { getFieldDecorator } = this.props.form;
         return(
             <Card className='detail-feedback-card'> 
 
@@ -56,38 +61,52 @@ class IssueDetailFeedback extends React.Component {
                     className='feedback-form'
                     onSubmit={this.handleSubmit}
                 >
-                <Form.Item label="Did the suggested action work ?" colon={false}>
-                    <Select onChange={this.handleActionWorkedChange} defaultValue="Yes">
-                        <Select.Option value="Yes">Yes</Select.Option>
-                        <Select.Option value="No">No</Select.Option>
-                    </Select>            
-                </Form.Item>
-                { !this.state.actionWorked &&
-                <Form.Item label="What action did Work ?" colon={false}>
-                    <Select showSearch defaultValue="" onChange={this.handleActionChange} optionFilterProp="children">
-                        <Select.Option value=""></Select.Option>
-                        {actionOptions}
-                        <Select.Option value="None">None of the above</Select.Option>
-                    </Select>            
-                </Form.Item>
-                }
-                { this.state.actionNA &&
-                    <Form.Item label="Please describe the action taken">
-                        <TextArea rows={4} />
+                    <Form.Item label="Did the suggested action work ?" colon={false}>
+                    {getFieldDecorator('actionworked', {
+                        initialValue:'Yes'
+                      })(
+                        <Select onChange={this.handleActionWorkedChange}>
+                            <Select.Option value="Yes">Yes</Select.Option>
+                            <Select.Option value="No">No</Select.Option>
+                        </Select>  
+                      )}          
                     </Form.Item>
-                }
-                <Form.Item label="Which site was affected ?" colon={false}>
-                <Select defaultValue="Unknown">
-                    <Select.Option value="Unknown">Unknown</Select.Option>
-                    {this.props.issue.src_site !== 'UNKNOWN' && <Select.Option value={this.props.issue.src_site}>{this.props.issue.src_site}</Select.Option>}
-                    {this.props.issue.dst_site !== 'UNKNOWN' &&  <Select.Option value={this.props.issue.dst_site}>{this.props.issue.dst_site}</Select.Option> }
-                </Select>            
-            </Form.Item>
-            <Form.Item s>
-                <Button type="primary" htmlType="submit">
-                    Submit
-                </Button>
-            </Form.Item>
+                    { !this.state.actionWorked &&
+                    <Form.Item label="What action did Work ?" colon={false}>
+                    {getFieldDecorator('action', {
+                        initialValue:''
+                      })(
+                        <Select showSearch onChange={this.handleActionChange} optionFilterProp="children">
+                            <Select.Option value=""></Select.Option>
+                            {actionOptions}
+                            <Select.Option value="None">None of the above</Select.Option>
+                        </Select>   
+                      )}         
+                    </Form.Item>
+                    }
+                    { this.state.actionNA &&
+                        <Form.Item label="Please describe the action taken">
+                        {getFieldDecorator('newaction', {})(
+                            <TextArea rows={4} />
+                        )}
+                        </Form.Item>
+                    }
+                    <Form.Item label="Which site was affected ?" colon={false}>
+                    {getFieldDecorator('site', {
+                        initialValue:'Unknown'
+                      })(
+                        <Select>
+                            <Select.Option value="Unknown">Unknown</Select.Option>
+                            {this.props.issue.src_site !== 'UNKNOWN' && <Select.Option value={this.props.issue.src_site}>{this.props.issue.src_site}</Select.Option>}
+                            {this.props.issue.dst_site !== 'UNKNOWN' &&  <Select.Option value={this.props.issue.dst_site}>{this.props.issue.dst_site}</Select.Option> }
+                        </Select>      
+                      )}      
+                    </Form.Item>
+                    <Form.Item s>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
                 </Form>
             </Card>
         )
@@ -100,7 +119,7 @@ const mapStateToProps = (state) => {
     return (
     {issue: state.issues.issue,
     actions: state.actions.actions,
-    loading: state.actions.loading,
+    pending: state.actions.pending,
     error: state.actions.error
         })};
 
