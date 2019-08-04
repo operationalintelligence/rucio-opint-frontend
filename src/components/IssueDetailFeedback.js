@@ -27,7 +27,7 @@ class IssueDetailFeedback extends React.Component {
                 let action = values.action
                 if (values.action == 'None') {
                     console.log('Should post new action ', values.newaction)
-                    action = postAction({text: values.newaction})
+                    action = postAction({action: values.newaction})
                 }
                 const solution = {
                     proposed_action_id: action,
@@ -35,7 +35,7 @@ class IssueDetailFeedback extends React.Component {
                     category_id: this.props.issue.category_id,
                     affected_site: values.site
                 }
-                postSolution(solution);
+                // postSolution(solution);
             }
           });
         this.props.history.push('/issues/');
@@ -59,7 +59,7 @@ class IssueDetailFeedback extends React.Component {
         if (!this.props.issue) return <div></div>
         actionOptions = []
         var actionOptions = this.props.actions.map(function (action) {
-            return <Select.Option key={action.text} value={action.id}>{action.text}</Select.Option>
+            return <Select.Option key={action.action} value={action.id}>{action.action}</Select.Option>
           });
         const { getFieldDecorator } = this.props.form;
         return(

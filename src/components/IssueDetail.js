@@ -13,7 +13,6 @@ class IssueDetail extends React.Component {
     componentDidMount() {
         const id = this.props.match.params.issue;
         this.props.dispatch(fetchIssueById(id));
-        console.log(this.props);
     }
 
 

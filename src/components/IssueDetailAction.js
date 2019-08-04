@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Tag, Icon, Row, Col, Button } from "antd";
-import { connect } from "react-redux";
-import { fetchActions } from "../creators/actions";
+import { getCategoryByID } from '../creators/issueCategories';
 
 class IssueDetailAction extends React.Component {
     handleClick = (e) => {
@@ -14,7 +13,6 @@ class IssueDetailAction extends React.Component {
             window.open(url,'_blank');
         }
     }
-
     renderSite = (site) => {
             return <Tag className="clickable" onClick={() => { this.handleSiteClick(site) }}>{site}</Tag>
     }
@@ -67,13 +65,4 @@ class IssueDetailAction extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return ({
-        issue: state.issues.issue,
-        actions: state.actions.actions,
-        pending: state.actions.pending,
-        error: state.actions.error
-    })
-};
-
-export default connect(mapStateToProps)(IssueDetailAction);
+export default IssueDetailAction;

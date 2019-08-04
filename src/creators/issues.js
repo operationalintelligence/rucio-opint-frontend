@@ -4,13 +4,10 @@ import API from '../config/api';
 export function fetchIssues() {
     return dispatch => {
         dispatch(fetchIssuesBegin());
-        API.get('error/12')
+        API.get('issues')
         .then(res => {
-            if(res.error) {
-                throw(res.error);
-            }
-            dispatch(fetchIssuesSuccess(res.data));
-            return res.data;
+            dispatch(fetchIssuesSuccess(res.data.results));
+            return res.data.results;
         })
         .catch(error => {
             dispatch(fetchIssuesFailure(error));
@@ -21,12 +18,9 @@ export function fetchIssues() {
 export function fetchIssueById(id) {
     return dispatch => {
       dispatch(fetchIssuesBegin());
-      API.get('error/12')
+      API.get('issues')
       .then(res => {
-          if(res.error) {
-              throw(res.error);
-          }
-          dispatch(fetchIssuesSuccess(res.data));
+          dispatch(fetchIssuesSuccess(res.data.results));
           dispatch(fetchIssueByID(id));
           return id;
       })

@@ -28,9 +28,12 @@ export function issuesReducer(state = initialState, action) {
                 error: action.error
             }
         case FETCH_ISSUES_ID:
+            const id = parseInt(action.id)
             return {
                 ...state,
-                issue: state.issues[action.id-1]
+                issue: state.issues.find(obj => {
+                    return obj.id === id
+                  })
             }
         case UPDATE_SEARCH_TEXT:
             return {

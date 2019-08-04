@@ -30,7 +30,7 @@ class IssueList extends React.Component {
                 <SearchBar handleSearch={this.handleSearch}/>
                     {
                         Object.values(this.props.issues).map((issue) => (
-                        <IssueListItem key={issue.message} handleSelection={this.handleSelection} {...issue}/>
+                        <IssueListItem key={issue.message + issue.src_site + issue.dst_site} handleSelection={this.handleSelection} {...issue}/>
                     ))
                 }
             </div>
