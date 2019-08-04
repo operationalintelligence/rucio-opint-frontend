@@ -18,7 +18,7 @@ export function fetchIssueCategories() {
 export function fetchIssueCategoriesById(id) {
     return dispatch => {
       dispatch(fetchIssueCategoriesBegin());
-      API.get('isissuecategoriessues')
+      API.get('issuecategories/?format=json')
       .then(res => {
           dispatch(fetchIssueCategoriesSuccess(res.data.results));
           dispatch(fetchIssueCategoriesByID(id));

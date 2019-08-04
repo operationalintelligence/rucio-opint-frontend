@@ -5,7 +5,7 @@ export const FETCH_ISSUE_CATEGORIES_ID = 'FETCH_ISSUE_CATEGORIES_ID';
 export const UPDATE_SEARCH_TEXT = 'UPDATE_SEARCH_TEXT';
 
 export const fetchIssueCategoriesBegin = () => ({
-  type: FETCH_ISSUE_CATEGORIESBEGIN
+  type: FETCH_ISSUE_CATEGORIES_BEGIN
 });
 
 export const fetchIssueCategoriesSuccess = issueCategories => ({

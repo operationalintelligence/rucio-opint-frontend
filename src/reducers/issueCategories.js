@@ -3,7 +3,6 @@ import { FETCH_ISSUE_CATEGORIES_BEGIN, FETCH_ISSUE_CATEGORIES_SUCCESS, FETCH_ISS
 const initialState = {
     pending: true,
     issueCategories: [],
-    searchText: '',
     error: null
 }
 
@@ -28,9 +27,12 @@ export function issueCategoriesReducer(state = initialState, action) {
                 error: action.error
             }
         case FETCH_ISSUE_CATEGORIES_ID:
+            const id = parseInt(action.id)
             return {
                 ...state,
-                issue: state.issueCategories[action.id-1]
+                issueCategory: state.issueCategories.find(obj => {
+                    return obj.id === id
+                })
             }
         default: 
             return state;

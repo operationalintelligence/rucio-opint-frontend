@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import { connect } from "react-redux";
 import { fetchActions, postAction } from "../creators/actions";
+import { fetchIssueCategoriesById } from '../creators/issueCategories';
 import { postSolution } from "../creators/issueSolution";
 
 const { TextArea } = Input;
@@ -17,6 +18,7 @@ class IssueDetailFeedback extends React.Component {
 
     componentDidMount(){
         this.props.dispatch(fetchActions());
+        this.props.dispatch(fetchIssueCategoriesById(this.props.issue.category));
     }
 
     handleSubmit = (e) => {
@@ -57,6 +59,7 @@ class IssueDetailFeedback extends React.Component {
 
     render(){
         if (!this.props.issue) return <div></div>
+        console.log(this.props);
         actionOptions = []
         var actionOptions = this.props.actions.map(function (action) {
             return <Select.Option key={action.action} value={action.id}>{action.action}</Select.Option>
@@ -130,10 +133,13 @@ const WrappedFeedbackForm = Form.create({ name: 'feedback' })(IssueDetailFeedbac
 
 const mapStateToProps = (state) => {
     return (
-    {issue: state.issues.issue,
-    actions: state.actions.actions,
-    pending: state.actions.pending,
-    error: state.actions.error
-        })};
+    {
+        actions: state.actions.actions,
+        actions_pending: state.actions.pending,
+        actions_error: state.actions.error,
+        category: state.issueCategories.issueCategory,
+        category_pending: state.issueCategories.pending,
+        category_error: state.issueCategories.error
+    })};
 
 export default connect(mapStateToProps)(withRouter(WrappedFeedbackForm));
