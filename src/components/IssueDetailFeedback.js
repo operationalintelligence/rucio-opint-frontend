@@ -25,19 +25,17 @@ class IssueDetailFeedback extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 let action = values.action
                 if (values.action == 'None') {
-                    console.log('Should post new action ', values.newaction)
                     action = postAction({action: values.newaction})
                 }
                 const solution = {
-                    proposed_action_id: action,
-                    issue_id: 1,
-                    category_id: this.props.issue.category_id,
-                    affected_site: values.site
+                    category: this.props.category.id,
+                    solution: action || null,
+                    affected_site: values.site,
+                    real_cause: null
                 }
-                // postSolution(solution);
+                postSolution(solution);
             }
           });
         this.props.history.push('/issues/');
@@ -59,7 +57,6 @@ class IssueDetailFeedback extends React.Component {
 
     render(){
         if (!this.props.issue) return <div></div>
-        console.log(this.props);
         actionOptions = []
         var actionOptions = this.props.actions.map(function (action) {
             return <Select.Option key={action.action} value={action.id}>{action.action}</Select.Option>
@@ -109,10 +106,10 @@ class IssueDetailFeedback extends React.Component {
                     }
                     <Form.Item label="Which site was affected ?" colon={false}>
                     {getFieldDecorator('site', {
-                        initialValue:'Unknown'
+                        initialValue:'unknown'
                       })(
                         <Select>
-                            <Select.Option value="Unknown">Unknown</Select.Option>
+                            <Select.Option value="unknown">Unknown</Select.Option>
                             {this.props.issue.src_site !== 'UNKNOWN' && <Select.Option value='src_site'>{this.props.issue.src_site}</Select.Option>}
                             {this.props.issue.dst_site !== 'UNKNOWN' &&  <Select.Option value='dst_site'>{this.props.issue.dst_site}</Select.Option> }
                         </Select>      
