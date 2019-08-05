@@ -9,7 +9,7 @@
     "build": "webpack --mode production ./src/index.js --output ./public/main.js",
     "start": "node server.js"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://0.0.0.0:5000",
   "keywords": [],
   "author": "Panos Paparrigopoulos",
   "license": "ISC",
