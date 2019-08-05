@@ -7,10 +7,13 @@ import './styles/styles.scss';
 
 const store = configureStore();
 
-const jsx = (
-    <Provider store={store}>
-        <AppRouter />
-    </Provider>
-);
+export default class App extends React.Component {
+    render(){
+        return (
+            <Provider store={store}>
+                <AppRouter />
+            </Provider>    
+        )}
+}
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
