@@ -4,7 +4,7 @@ import API from '../config/api';
 export function fetchActions() {
   return dispatch => {
     dispatch(fetchActionsBegin());
-    API.get('actions')
+    API.get('actions/?format=json')
     .then(res => {
         if(res.error) {
             throw(res.error);
@@ -19,7 +19,7 @@ export function fetchActions() {
 }
 
 export function postAction(action) {
-    API.post('actions/', action)
+    API.post('actions', action)
     .then(res => {
         return res.data.id
     })
