@@ -35,6 +35,7 @@ class IssueDetailFeedback extends React.Component {
                     affected_site: values.site,
                     real_cause: null
                 }
+                console.log('sending ', solution, action);
                 postSolution(solution);
             }
           });
