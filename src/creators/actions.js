@@ -17,14 +17,3 @@ export function fetchActions() {
     })
 }
 }
-
-export function postAction(action) {
-    API.post('actions/', action)
-    .then(res => {
-        console.log('returning ', res.data.id)
-        return res.data.id
-    })
-    .catch(error => {
-        console.log('Error posting action ', error)
-    })
-};

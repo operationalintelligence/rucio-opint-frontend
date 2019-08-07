@@ -1,9 +1,10 @@
 import React from "react";
-import { Card, Form, Select, Row, Tag, Button, Input } from "antd";
 import { withRouter } from 'react-router-dom'
-
 import { connect } from "react-redux";
-import { fetchActions, postAction } from "../creators/actions";
+import { Card, Form, Select, Row, Tag, Button, Input } from "antd";
+
+import API from '../config/api';
+import { fetchActions } from "../creators/actions";
 import { fetchIssueCategoriesById } from '../creators/issueCategories';
 import { postSolution } from "../creators/issueSolution";
 
@@ -25,19 +26,20 @@ class IssueDetailFeedback extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                let action = values.action
-                if (values.action == 'None') {
-                    action = postAction({action: values.newaction})
-                }
-                const solution = {
-                    category: this.props.category.id,
-                    solution: action || null,
-                    affected_site: values.site,
-                    real_cause: null
-                }
-                console.log('sending ', solution, action);
-                postSolution(solution);
-            }
+                API.post('actions/', {action: values.newaction || (this.state.actionWorked ? 'Proposed' : values.action)})
+                    .then(res => {
+                        const solution = {
+                            category: this.props.category.id,
+                            solution: values.newaction || res.data.id,
+                            affected_site: values.site,
+                            real_cause: null
+                        }
+                        postSolution(solution);
+                    })
+                    .catch(e => {
+                        console.log('Error ', e);
+                    })
+        }
           });
         this.props.history.push('/issues/');
     }
@@ -60,7 +62,9 @@ class IssueDetailFeedback extends React.Component {
         if (!this.props.issue) return <div></div>
         actionOptions = []
         var actionOptions = this.props.actions.map(function (action) {
-            return <Select.Option key={action.action} value={action.id}>{action.action}</Select.Option>
+            if(!['Unknown', 'Proposed'].includes(action.action)){
+                return <Select.Option key={action.action} value={action.id}>{action.action}</Select.Option>    
+            }
           });
         const { getFieldDecorator } = this.props.form;
         return(
