@@ -24,7 +24,7 @@ export function issueCategoriesReducer(state = initialState, action) {
             return {
                 ...state,
                 pending: false,
-                error: action.error
+                error: action.payload.error
             }
         case FETCH_ISSUE_CATEGORIES_ID:
             const id = parseInt(action.id)

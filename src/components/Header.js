@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { Menu } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom'
 
@@ -14,8 +16,23 @@ const Header = (props) => (
         </Menu.Item>    
         <Menu.Item key="/issues">
             <NavLink exact activeClassName="is-active" to='/issues'>Issues</NavLink>
-        </Menu.Item>    
+        </Menu.Item>
+        { props.token ?
+          <Menu.Item key="/logout">
+            <a onClick={()=>{props.dispatch(logout()); props.history.push('/') }}>Logout ({props.username})</a>
+          </Menu.Item>
+          :
+          <Menu.Item key="/login">
+            <NavLink activeClassName="is-active" to='/login'>Login</NavLink>
+          </Menu.Item>
+        }
       </Menu>
 )
 
-export default withRouter(Header);
+
+const mapStateToProps = (state) => ({
+  username: state.auth.username,
+  token: state.auth.token
+  });
+
+export default connect(mapStateToProps)(withRouter(Header));

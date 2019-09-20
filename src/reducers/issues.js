@@ -25,7 +25,7 @@ export function issuesReducer(state = initialState, action) {
             return {
                 ...state,
                 pending: false,
-                error: action.error
+                error: action.payload.error
             }
         case FETCH_ISSUES_ID:
             const id = parseInt(action.id)

@@ -8,6 +8,7 @@ import Header from '../components/Header'
 import IssueList from '../components/IssueList'
 import IssueDetail from '../components/IssueDetail'
 import NotFoundPage from '../components/NotFound'
+import LoginForm from '../components/LoginForm'
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -21,6 +22,7 @@ const AppRouter = () => (
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/issues' component={IssueList}/>
                     <Route exact path="/issues/:issue" component={IssueDetail} />
+                    <Route exact path='/login' component={LoginForm}/>
                     <Route exact component={NotFoundPage}/>
                 </Switch>
             </AntdContent>

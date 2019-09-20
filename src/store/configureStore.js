@@ -3,13 +3,15 @@ import thunk from 'redux-thunk';
 import { issuesReducer } from '../reducers/issues'
 import { actionsReducer } from '../reducers/actions'
 import { issueCategoriesReducer } from '../reducers/issueCategories'
+import { authReducer } from '../reducers/auth'
 
 export default () => {
     const store = createStore(
         combineReducers({
             issues: issuesReducer,
             actions: actionsReducer,
-            issueCategories: issueCategoriesReducer
+            issueCategories: issueCategoriesReducer,
+            auth: authReducer
         }),
         applyMiddleware(thunk)
     );
