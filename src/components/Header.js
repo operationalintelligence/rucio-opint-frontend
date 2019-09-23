@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { doLogout } from '../creators/auth';
 
 import { Menu } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom'
@@ -19,7 +20,7 @@ const Header = (props) => (
         </Menu.Item>
         { props.token ?
           <Menu.Item key="/logout">
-            <a onClick={()=>{props.dispatch(logout()); props.history.push('/') }}>Logout ({props.username})</a>
+            <a onClick={()=>{props.dispatch(doLogout()); props.history.push('/') }}>Logout ({props.username})</a>
           </Menu.Item>
           :
           <Menu.Item key="/login">

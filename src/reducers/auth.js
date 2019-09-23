@@ -19,8 +19,8 @@ export function authReducer(state = initialState, action) {
             return {
                 ...state,
                 pending: false,
-                username: action.payload.username,
-                token: action.payload.token,
+                username: action.payload.user.user.username,
+                token: action.payload.user.token,
             }
         case LOGIN_FAILURE: 
             return {

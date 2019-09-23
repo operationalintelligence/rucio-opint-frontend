@@ -1,21 +1,39 @@
 import {loginBegin, loginSuccess, loginFailure, logout} from '../actions/auth';
 import API from '../config/api';
 
-export function login() {
+export function doLogin(user) {
     return dispatch => {
         dispatch(loginBegin());
-        API.get('users/')
+        API.post('auth/login/', user,  {
+            headers: {'Content-Type': 'application/json'}
+          })
         .then(res => {
-            dispatch(loginSuccess(res.data.results));
+            const token = res.data.token;
+            // const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
+            localStorage.setItem('token', token);
+            // localStorage.setItem('expirationDate', expirationDate);
+            dispatch(loginSuccess(res.data));
+            // dispatch(checkAuthTimeout(3600));
             return res.data.results;
         })
         .catch(error => {
-            dispatch(loginFailure(error));
+            if (error.response.status == 400){ error.message = "Invalid credentials" }
+            dispatch(loginFailure(error.message));
         })
     }
 }
 
-export function logout() {
+// export const checkAuthTimeout = expirationTime => {
+//     return dispatch => {
+//         setTimeout(() => {
+//             dispatch(logout());
+//         }, expirationTime * 1000)
+//     }
+// }
+
+
+export function doLogout() {
+    localStorage.setItem('token', '');
     return dispatch => {
       dispatch(logout());
     }

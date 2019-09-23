@@ -1,12 +1,20 @@
 import React from 'react';
 import { Form, Input, Button, Icon, Alert } from 'antd';
 import { connect } from 'react-redux';
+import { doLogin } from '../creators/auth';
+
 import cern_logo from '../images/cern_logo.png'
+
 class LoginForm extends React.Component {
 
-      handleLogin = (e) => {
+      handleLogin = (e, data) => {
         e.preventDefault();
-        console.log('Loging-in');
+        this.props.form.validateFields((err, values) => {
+          if (!err) {
+            this.props.dispatch(doLogin(JSON.stringify(values)));
+            this.props.history.push('/issues/');
+          }
+        });        
       }
     
       render() {
