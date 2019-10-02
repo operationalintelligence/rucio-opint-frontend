@@ -20,7 +20,7 @@ Run webpack to bundle JS and keep watching for changes:
 npm run devwatch
 ```
 
-Rune the webpack-dev-server:
+Run the webpack-dev-server:
 ```commandline
 npm run dev
 ```
