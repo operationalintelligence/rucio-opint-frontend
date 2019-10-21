@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Row, Tag, Icon } from "antd";
 
-class IssueListItem extends React.Component {
+class WorkflowIssueListItem extends React.Component {
     constructor(props) {
         super(props);
         this.props = props;
@@ -35,4 +35,4 @@ class IssueListItem extends React.Component {
 }
 
 
-export default IssueListItem;
+export default WorkflowIssueListItem;

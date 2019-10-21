@@ -1,5 +1,5 @@
 import React from "react";
-import IssueListItem from './IssueListItem'
+import WorkflowIssueListItem from './WorkflowIssueListItem'
 import SearchBar from './SearchBar'
 import { connect } from 'react-redux';
 import { fetchIssues } from '../creators/issues';
@@ -30,7 +30,7 @@ class IssueList extends React.Component {
                 <SearchBar handleSearch={this.handleSearch}/>
                     {
                         Object.values(this.props.issues).map((issue) => (
-                        <IssueListItem key={issue.message + issue.src_site + issue.dst_site} handleSelection={this.handleSelection} {...issue}/>
+                        <WorkflowIssueListItem key={issue.message + issue.src_site + issue.dst_site} handleSelection={this.handleSelection} {...issue}/>
                     ))
                 }
             </div>
@@ -42,7 +42,7 @@ function mapStateToProps(state) {
     let issues = state.issues.issues;
     const searchText = state.issues.searchText;
     if (issues){
-        issues = issues.filter((issue) => (issue.message.toLowerCase() + ' ' + issue.src_site.toLowerCase() + ' ' + issue.dst_site.toLowerCase())
+        issues = issues.filter((issue) => (issue.message.toLowerCase() + ' ' + issue.workflow.toLowerCase())
                                             .includes(searchText.toLowerCase()));
     }
     return {
