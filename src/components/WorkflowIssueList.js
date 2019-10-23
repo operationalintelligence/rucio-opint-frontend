@@ -2,8 +2,8 @@ import React from "react";
 import WorkflowIssueListItem from './WorkflowIssueListItem'
 import SearchBar from './SearchBar'
 import { connect } from 'react-redux';
-import { fetchIssues } from '../creators/issues';
-import { updateSearchText } from '../actions/issues';
+import { fetchWorkflowIssues } from '../creators/workflowIssues';
+import { updateSearchText } from '../actions/workflowIssues';
 
 class IssueList extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class IssueList extends React.Component {
     }
 
     componentDidMount(){
-        this.props.dispatch(fetchIssues());
+        this.props.dispatch(fetchWorkflowIssues());
     }
     
     handleSearch(e){
@@ -39,8 +39,8 @@ class IssueList extends React.Component {
 }
 
 function mapStateToProps(state) {
-    let issues = state.issues.issues;
-    const searchText = state.issues.searchText;
+    let issues = state.workflowIssues.issues;
+    const searchText = state.workflowIssues.searchText;
     if (issues){
         issues = issues.filter((issue) => (issue.message.toLowerCase() + ' ' + issue.workflow.toLowerCase())
                                             .includes(searchText.toLowerCase()));

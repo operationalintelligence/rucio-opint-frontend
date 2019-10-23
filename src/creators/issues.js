@@ -1,10 +1,10 @@
 import {fetchIssuesBegin, fetchIssuesSuccess, fetchIssuesFailure, fetchIssueByID} from '../actions/issues';
 import API from '../config/api';
 
-export function fetchIssues(category) {
+export function fetchIssues() {
     return dispatch => {
         dispatch(fetchIssuesBegin());
-        API.get('issues/' + category + '/?format=json')
+        API.get('issues/transfer/?format=json')
         .then(res => {
             dispatch(fetchIssuesSuccess(res.data.results));
             return res.data.results;
@@ -15,10 +15,10 @@ export function fetchIssues(category) {
     }
 }
 
-export function fetchIssueById(id, category) {
+export function fetchIssueById(id) {
     return dispatch => {
       dispatch(fetchIssuesBegin());
-      API.get('issues/' + category + '/?format=json')
+      API.get('issues/transfer/?format=json')
       .then(res => {
           dispatch(fetchIssuesSuccess(res.data.results));
           dispatch(fetchIssueByID(id));

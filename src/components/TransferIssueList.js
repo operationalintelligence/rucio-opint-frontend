@@ -16,7 +16,7 @@ class TransferIssueList extends React.Component {
     }
 
     componentDidMount(){
-        this.props.dispatch(fetchIssues('transfer'));
+        this.props.dispatch(fetchIssues());
     }
     
     handleSearch(e){
