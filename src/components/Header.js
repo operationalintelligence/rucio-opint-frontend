@@ -15,8 +15,11 @@ const Header = (props) => (
         <Menu.Item key="/">
             <NavLink exact activeClassName="is-active" to='/'>Home</NavLink>
         </Menu.Item>    
-        <Menu.Item key="/issues">
-            <NavLink exact activeClassName="is-active" to='/issues'>Issues</NavLink>
+        <Menu.Item key="/issues/transfer">
+            <NavLink exact activeClassName="is-active" to='/issues/transfer'>Transfer Issues</NavLink>
+        </Menu.Item>
+        <Menu.Item key="/issues/workflow">
+            <NavLink exact activeClassName="is-active" to='/issues/workflow'>Workflow Issues</NavLink>
         </Menu.Item>
         { props.token ?
           <Menu.Item key="/logout">

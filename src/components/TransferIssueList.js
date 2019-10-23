@@ -1,11 +1,11 @@
 import React from "react";
-import IssueListItem from './IssueListItem'
+import TransferIssueListItem from './TransferIssueListItem'
 import SearchBar from './SearchBar'
 import { connect } from 'react-redux';
 import { fetchIssues } from '../creators/issues';
 import { updateSearchText } from '../actions/issues';
 
-class IssueList extends React.Component {
+class TransferIssueList extends React.Component {
     constructor(props) {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
@@ -30,7 +30,7 @@ class IssueList extends React.Component {
                 <SearchBar handleSearch={this.handleSearch}/>
                     {
                         Object.values(this.props.issues).map((issue) => (
-                        <IssueListItem key={issue.message + issue.src_site + issue.dst_site} handleSelection={this.handleSelection} {...issue}/>
+                        <TransferIssueListItem key={issue.message + issue.src_site + issue.dst_site} handleSelection={this.handleSelection} {...issue}/>
                     ))
                 }
             </div>
@@ -51,4 +51,4 @@ function mapStateToProps(state) {
     
 }
 
-export default connect(mapStateToProps)(IssueList);
+export default connect(mapStateToProps)(TransferIssueList);
