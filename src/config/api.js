@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: process.env.API_URL
+  baseURL: 'http://rucio-opint-api.web.cern.ch/api'
 });
