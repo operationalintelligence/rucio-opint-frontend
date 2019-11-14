@@ -10,6 +10,7 @@ import WorkflowIssueList from '../components/WorkflowIssueList'
 import IssueDetail from '../components/IssueDetail'
 import NotFoundPage from '../components/NotFound'
 import LoginForm from '../components/LoginForm'
+import CERNLoginSuccess from '../components/CERNLoginSuccess'
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -25,6 +26,7 @@ const AppRouter = () => (
                     <Route exact path='/issues/workflow' component={WorkflowIssueList}/>
                     <Route exact path="/issues/:issue" component={IssueDetail} />
                     <Route exact path='/login' component={LoginForm}/>
+                    <Route exact path='/login/cern/success' component={CERNLoginSuccess}/>
                     <Route exact component={NotFoundPage}/>
                 </Switch>
             </AntdContent>

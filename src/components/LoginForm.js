@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import React from 'react';
 import { Form, Input, Button, Icon, Alert } from 'antd';
 import { connect } from 'react-redux';
@@ -15,6 +17,23 @@ class LoginForm extends React.Component {
             this.props.history.push('/issues/');
           }
         });        
+      }
+
+      handleCERNLogin = (e) => {
+        axios.get('https://oauth.web.cern.ch/OAuth/Authorize', {
+          params: {
+            response_type: 'code',
+            client_id: 'rucio_opint_ui_dev',
+            redirect_uri: location.origin+'/login/cern/success',
+          }
+        })
+        .then(res => {
+            console.log('111', res)
+        })
+        .catch(error => {
+          console.log('222', error)
+            this.props.error = error;
+        })
       }
     
       render() {
@@ -40,7 +59,7 @@ class LoginForm extends React.Component {
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
-              <Button type="primary" htmlType="button" className="login-form-button login-form-button-cern">
+              <Button type="primary" htmlType="button" className="login-form-button login-form-button-cern" onClick={this.handleCERNLogin}>
                   <img className="login-logo" src={cern_logo}/>
                   Login with CERN
               </Button>
