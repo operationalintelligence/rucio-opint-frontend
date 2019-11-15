@@ -4,7 +4,7 @@ import API from '../config/api';
 export function doLogin(user) {
     return dispatch => {
         dispatch(loginBegin());
-        API.post('auth/login/', user,  {
+        API.post('auth/rest-auth/login/', user,  {
             headers: {'Content-Type': 'application/json'}
           })
         .then(res => {
@@ -30,6 +30,12 @@ export function doLogin(user) {
 //         }, expirationTime * 1000)
 //     }
 // }
+export function doCERNLogin(user) {
+    localStorage.setItem('token', user.token);
+    return dispatch => {
+      dispatch(loginSuccess(user));
+    }
+}
 
 
 export function doLogout() {

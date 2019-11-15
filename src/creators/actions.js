@@ -4,7 +4,7 @@ import API from '../config/api';
 export function fetchActions() {
   return dispatch => {
     dispatch(fetchActionsBegin());
-    API.get('actions/?format=json')
+    API.get('api/actions/?format=json')
     .then(res => {
         if(res.error) {
             throw(res.error);

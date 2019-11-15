@@ -4,7 +4,7 @@ import API from '../config/api';
 export function fetchIssueCategories() {
     return dispatch => {
         dispatch(fetchIssueCategoriesBegin());
-        API.get('issuecategories/?format=json')
+        API.get('api/issuecategories/?format=json')
         .then(res => {
             dispatch(fetchIssueCategoriesSuccess(res.data.results));
             return res.data.results;
@@ -18,7 +18,7 @@ export function fetchIssueCategories() {
 export function fetchIssueCategoriesById(id) {
     return dispatch => {
       dispatch(fetchIssueCategoriesBegin());
-      API.get('issuecategories/?format=json')
+      API.get('api/issuecategories/?format=json')
       .then(res => {
           dispatch(fetchIssueCategoriesSuccess(res.data.results));
           dispatch(fetchIssueCategoriesByID(id));
