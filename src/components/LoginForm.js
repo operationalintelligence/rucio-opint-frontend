@@ -16,6 +16,10 @@ class LoginForm extends React.Component {
           }
         });        
       }
+
+      handleCERNLogin = (e) => {
+        window.location.replace("https://oauth.web.cern.ch/OAuth/Authorize?response_type=code&client_id=rucio_opint_ui_dev&redirect_uri=https:%2F%2Frucio-opint-ui-dev.web.cern.ch%2Flogin%2Fcern%2Fsuccess");
+      }
     
       render() {
         const { getFieldDecorator } = this.props.form;
@@ -40,7 +44,7 @@ class LoginForm extends React.Component {
               <Button type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
-              <Button type="primary" htmlType="button" className="login-form-button login-form-button-cern">
+              <Button type="primary" htmlType="button" className="login-form-button login-form-button-cern" onClick={this.handleCERNLogin}>
                   <img className="login-logo" src={cern_logo}/>
                   Login with CERN
               </Button>
