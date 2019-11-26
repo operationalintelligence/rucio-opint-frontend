@@ -26,11 +26,11 @@ class IssueDetailFeedback extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                API.post('actions/', {action: values.newaction || (this.state.actionWorked ? 'Proposed' : values.action)})
+                API.post('api/actions/', {action: values.newaction || (this.state.actionWorked ? 'Proposed' : values.action)})
                     .then(res => {
                         const solution = {
                             category: this.props.category.id,
-                            solution: values.newaction || res.data.id,
+                            solution: res.data.id,
                             affected_site: values.site,
                             real_cause: null
                         }
@@ -41,7 +41,7 @@ class IssueDetailFeedback extends React.Component {
                     })
         }
           });
-        this.props.history.push('/issues/');
+        this.props.history.push('/issues/transfer');
     }
 
     handleActionWorkedChange = (e) => {
