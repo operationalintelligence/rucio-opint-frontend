@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
       }
 
       handleCERNLogin = (e) => {
-        window.location.replace("https://oauth.web.cern.ch/OAuth/Authorize?response_type=code&client_id=rucio_opint_ui&redirect_uri=https:%2F%2Frucio-opint-ui.web.cern.ch%2Flogin%2Fcern%2Fsuccess");
+        window.location.replace("https://oauth.web.cern.ch/OAuth/Authorize?response_type=code&client_id=rucio_opint&redirect_uri=https:%2F%2Frucio-opint-ui.web.cern.ch%2Flogin%2Fcern%2Fsuccess");
       }
     
       render() {
