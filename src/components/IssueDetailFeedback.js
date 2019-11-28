@@ -29,7 +29,7 @@ class IssueDetailFeedback extends React.Component {
                 API.post('api/actions/', {action: values.newaction || (this.state.actionWorked ? 'Proposed' : values.action)})
                     .then(res => {
                         const solution = {
-                            category: this.props.category.id,
+                            category: this.props.issue.category,
                             solution: res.data.id,
                             affected_site: values.site,
                             real_cause: null
